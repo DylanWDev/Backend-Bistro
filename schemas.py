@@ -22,3 +22,6 @@ class MenuItemModel(BaseModel):
     category_id: Optional[int] = None
     cuisine_id: Optional[int] = None
     
+    class Config:
+        orm_mode = True
+    

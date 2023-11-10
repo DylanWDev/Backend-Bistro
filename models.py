@@ -11,8 +11,10 @@ class Category(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     name: Mapped[str] = Column(String, default="Name")
 
-    # def __repr__(self) -> str:
-    #     return f"Category(id={self.id!r}, name={self.name!r})"
+    menuitems = relationship("MenuItem", back_populates="category")
+
+    def __repr__(self) -> str:
+        return f"Category(id={self.id!r}, name={self.name!r})"
     
 
 class Cuisine(Base):
@@ -21,8 +23,10 @@ class Cuisine(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     name: Mapped[str] = Column(String, default="Name")
 
-    # def __repr__(self) -> str:
-    #     return f"Cuisine(id={self.id!r}, name={self.name!r})"
+    menuitems = relationship("MenuItem", back_populates="cuisine")
+
+    def __repr__(self) -> str:
+        return f"Cuisine(id={self.id!r}, name={self.name!r})"
     
 
 class MenuItem(Base):

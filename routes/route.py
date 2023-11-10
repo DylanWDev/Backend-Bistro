@@ -1,11 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
+from schemas import MenuItemModel
 from database import SessionLocal
+import schemas
 import crud
-from schemas import MenuItemModel, CategoryModel, CuisineModel
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/menuitem"
+)
 
 def get_db():
     db = SessionLocal()
@@ -14,7 +17,8 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/all", response_model=List[MenuItemModel])
-async def get_menu_items(db: Session = Depends(get_db)):
+@router.get("/all", response_model=List[schemas.MenuItemModel])
+def get_menu(db: Session = Depends(get_db)):
     menu_items = crud.get_menu(db)
     return menu_items
+
