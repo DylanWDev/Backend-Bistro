@@ -4,7 +4,7 @@ from sqlalchemy import Select
 from routes import route
 
 app = FastAPI()
-app.include_router(heroes.router)
+app.include_router(route.router)
 
 @app.get("/")
 async def read_root():

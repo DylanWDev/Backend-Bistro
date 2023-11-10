@@ -11,9 +11,9 @@ def get_menu_items(db:Session):
 
 
 
-def get_category_cuisine(db:Session):
-    menu_items_category_cuisine_query = (
+def get_category_and_cuisine_type(db:Session):
+    menu_items_with_category_and_cuisine_query = (
         db.query(MenuItem).options(joinedload(MenuItem.categories)).all()
     )
     
-    return menu_items_category_cuisine_query
+    return menu_items_with_category_and_cuisine_query
