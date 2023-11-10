@@ -1,8 +1,9 @@
 # routes.py
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from database import SessionLocal
-from crud import get_menu  # Import your updated get_menu function
+from crud import get_menu 
+from models import MenuItem
 
 router = APIRouter()
 
@@ -28,3 +29,9 @@ async def get_all_menu_items(db: Session = Depends(get_db)):
             "cuisine": cuisine_name
         })
     return result
+
+
+
+    
+
+
