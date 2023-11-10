@@ -1,11 +1,11 @@
 from typing import List
 from typing import Optional
-
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Text, Float
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-
 from database import Base
 
+class Base (DeclarativeBase):
+    pass
 
 class Category(Base):
     __tablename__ = "category"
@@ -13,8 +13,8 @@ class Category(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     name: Mapped[str] = Column(String, default="Name")
 
-    def __repr__(self) -> str:
-        return f"Category(id={self.id!r}, name={self.name!r})"
+    # def __repr__(self) -> str:
+    #     return f"Category(id={self.id!r}, name={self.name!r})"
     
 
 class Cuisine(Base):
@@ -23,8 +23,8 @@ class Cuisine(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     name: Mapped[str] = Column(String, default="Name")
 
-    def __repr__(self) -> str:
-        return f"Cuisine(id={self.id!r}, name={self.name!r})"
+    # def __repr__(self) -> str:
+    #     return f"Cuisine(id={self.id!r}, name={self.name!r})"
     
 
 class MenuItem(Base):
@@ -33,7 +33,7 @@ class MenuItem(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     title: Mapped[str] = Column(String, default="Name")
     description: Mapped[str] = Column(String, default="Description")
-    price: Mapped[int] = Column(Integer, default="Price")
+    price: Mapped[float] = Column(Integer, default="Price")
     spicy_level: Mapped[int] = Column(Integer, default="Spicy Level")
 
     category_id: Mapped[int] = Column(Integer, ForeignKey("category.id"))
