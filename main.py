@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from models import Category, Cuisine, MenuItem
-from sqlalchemy import Select
+import models
+from database import engine
 from routes import route
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-app.include_router(route.router)
 
 @app.get("/")
 async def read_root():

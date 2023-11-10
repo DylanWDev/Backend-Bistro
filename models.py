@@ -4,8 +4,6 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Text, Float
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from database import Base
 
-class Base (DeclarativeBase):
-    pass
 
 class Category(Base):
     __tablename__ = "category"
